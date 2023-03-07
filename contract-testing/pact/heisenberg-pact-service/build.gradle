@@ -1,0 +1,64 @@
+import org.springframework.boot.gradle.plugin.SpringBootPlugin
+
+plugins {
+    id "java"
+    id "org.jetbrains.kotlin.jvm" version "1.8.10"
+    id "org.jetbrains.kotlin.plugin.spring" version "1.8.10"
+    id "org.springframework.boot" version "2.7.9"
+    id "io.spring.dependency-management" version "1.1.0"
+}
+
+dependencyManagement {
+    imports {
+        mavenBom(SpringBootPlugin.BOM_COORDINATES)
+    }
+}
+
+testing {
+    suites {
+        contractTest(JvmTestSuite) {
+            testType.set(TestSuiteType.INTEGRATION_TEST)
+            useJUnitJupiter()
+
+            dependencies {
+                implementation project()
+            }
+
+            sources {
+                java {
+                    srcDirs = ["src/contractTest/java", "src/contractTest/kotlin"]
+                }
+                resources {
+                    srcDirs = ["src/contractTest/resources"]
+                }
+            }
+
+            targets {
+                configureEach {
+                    testTask.configure {
+                        options {}
+                        useJUnitPlatform()
+                        outputs.upToDateWhen { false }
+                        //we disable caching for provider tests because they rely on the state of the remote pact broker until a good implementation in place
+
+                        systemProperty "pact.verification.reports", "console,markdown"
+                        systemProperty "pact.verification.reportDir", "$buildDir/reports/pactVerifications"
+                        systemProperty "pactbroker.url", "TODO" //todo url
+                        project.properties
+                                .findAll { it.key.contains("pact") }
+                                .each {
+                                    systemProperty it.key, it.value
+                                }
+                    }
+                }
+            }
+        }
+    }
+}
+
+dependencies {
+    implementation("org.springframework.boot:spring-boot-starter-web")
+
+    contractTestImplementation("org.springframework.boot:spring-boot-starter-test")
+    contractTestImplementation("au.com.dius.pact.consumer:junit5:4.5.0")
+}
