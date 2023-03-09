@@ -15,7 +15,7 @@ import org.springframework.web.client.RestTemplate
 
 @PactTestFor(port = "8091", providerName = "heisenberg")
 @ExtendWith(value = [SpringExtension::class, PactConsumerTestExt::class])
-class HeisenbergServiceTest {
+class HeisenbergServiceConsumerContractTest {
 
     lateinit var heisenbergService: HeisenbergService
 
@@ -42,12 +42,12 @@ class HeisenbergServiceTest {
                                 .`object` { crystal ->
                                     crystal
                                         .numberType("id", 1)
-                                        .stringType("color", "red")
+                                        .stringMatcher("color", "red|blue")
                                 }
                                 .`object` { crystal ->
                                     crystal
                                         .numberType("id", 2)
-                                        .stringType("color", "blue")
+                                        .stringMatcher("color", "red|blue")
                                 }
                         }
                 }.build()

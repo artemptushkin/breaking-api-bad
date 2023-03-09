@@ -20,3 +20,9 @@
   -Ppact.provider.tag=main \
   -Ppact.provider.version=heisenberg-season1 -i -s
 ```
+
+### Can-i-deploy
+
+```shell
+pact-broker can-i-deploy --pacticipant=jesse-pinkman --version=jesse-season1 --to=main --broker-base-url=https://saul-goodman.pactflow.io/ -k=$SAUL_GOODMAN_BROKER_TOKEN
+```

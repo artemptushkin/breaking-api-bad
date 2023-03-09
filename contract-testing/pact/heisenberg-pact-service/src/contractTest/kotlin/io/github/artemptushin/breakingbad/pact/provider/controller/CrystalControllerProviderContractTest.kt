@@ -15,7 +15,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
 @Provider("heisenberg")
 @ExtendWith(value = [SpringExtension::class])
-class CrystalControllerTest {
+class CrystalControllerProviderContractTest {
 
     @TestTemplate
     @ExtendWith(PactVerificationSpringProvider::class)
