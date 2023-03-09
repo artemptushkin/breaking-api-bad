@@ -1,3 +1,4 @@
+import au.com.dius.pact.provider.gradle.PactPublishTask
 import org.springframework.boot.gradle.plugin.SpringBootPlugin
 
 plugins {
@@ -50,5 +51,24 @@ dependencies {
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin")
     implementation("org.springframework.boot:spring-boot-starter-web")
 
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.8.1'
+
+    contractTestImplementation("org.springframework.boot:spring-boot-starter-web")
+    contractTestImplementation("au.com.dius.pact.consumer:junit5:4.5.0")
     contractTestImplementation("org.springframework.boot:spring-boot-starter-test")
+}
+
+pact {
+    broker {
+        pactBrokerUrl = "https://saul-goodman.pactflow.io/"
+        pactBrokerToken = project.properties["pactbroker.auth.token"] ?: project.properties["pact.broker.pactBrokerToken"]
+    }
+    publish {
+        tags = (project.properties["pact.publish.tags"] ?: "").split(",")
+        consumerVersion = project.properties["pact.publish.consumerVersion"]
+    }
+}
+
+tasks.withType(PactPublishTask) {
+    mustRunAfter(tasks.named("contractTest"))
 }

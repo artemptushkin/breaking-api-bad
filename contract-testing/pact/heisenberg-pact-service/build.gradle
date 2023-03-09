@@ -43,7 +43,7 @@ testing {
 
                         systemProperty "pact.verification.reports", "console,markdown"
                         systemProperty "pact.verification.reportDir", "$buildDir/reports/pactVerifications"
-                        systemProperty "pactbroker.url", "TODO" //todo url
+                        systemProperty "pactbroker.url", "https://saul-goodman.pactflow.io/"
                         project.properties
                                 .findAll { it.key.contains("pact") }
                                 .each {
@@ -58,7 +58,8 @@ testing {
 
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter-web")
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.8.1'
 
     contractTestImplementation("org.springframework.boot:spring-boot-starter-test")
-    contractTestImplementation("au.com.dius.pact.consumer:junit5:4.5.0")
+    contractTestImplementation("au.com.dius.pact.provider:junit5spring:4.5.0")
 }
