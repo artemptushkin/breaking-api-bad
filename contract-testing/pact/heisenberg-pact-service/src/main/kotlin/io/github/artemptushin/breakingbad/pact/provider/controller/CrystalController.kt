@@ -14,7 +14,8 @@ class CrystalController {
     @GetMapping
     operator fun get(@RequestParam amount: Int): CrystalsResponse {
         val price = BigDecimal("10.0")
-        val crystals: List<Crystal> = listOf(Crystal(1L, "red"), Crystal(2L, "blue"))
-        return CrystalsResponse(crystals, price.multiply(BigDecimal.valueOf(amount.toLong())))
+        return CrystalsResponse(
+            Crystal(1L, price.multiply(BigDecimal.valueOf(amount.toLong())))
+        )
     }
 }

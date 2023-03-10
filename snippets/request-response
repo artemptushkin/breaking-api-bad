@@ -10,15 +10,23 @@ Status: 200
 Content-Type: application/json
 
 {
-    "crystals": [
-        {
-            "id": 1,
-            "color": "red"
+  "matchingRules": {
+    "body": {
+        "$.blue.amount": {
+            "combine": "AND",
+            "matchers": [
+                {
+                    "match": "number"
+                }
+            ]
         },
-        {
-            "id": 2,
-            "color": "blue"
+        "$.blue.id": {
+            "combine": "AND",
+            "matchers": [
+                {
+                    "match": "number"
+                }
+            ]
         }
-    ],
-    "amount": 10.0
+    }
 }

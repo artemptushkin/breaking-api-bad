@@ -18,9 +18,8 @@ class ShopController(private val heisenbergService: HeisenbergService) {
     fun buy(@RequestBody shopRequest: ShopRequest): CrystalsShopResponse {
         val crystalsResponse = heisenbergService.cookCrystals(shopRequest.amount)
         return CrystalsShopResponse(
-            amount = crystalsResponse.amount,
-            crystals = crystalsResponse.crystals,
-            cost = crystalsResponse.amount.multiply(BigDecimal.valueOf(5))
+            blue = crystalsResponse.blue,
+            cost = crystalsResponse.blue.amount.multiply(BigDecimal.valueOf(5))
         )
     }
 }

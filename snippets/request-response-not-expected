@@ -1,0 +1,17 @@
+# Request
+
+GET /heisenberg/v1/crystals?amount=1
+Host: localhost:8080
+Content-Type: application/json
+
+# Expected Response
+
+Status: 200
+Content-Type: application/json
+
+{
+    "blue": {
+        "id": 1,
+        "amount": 10.0
+    }
+}

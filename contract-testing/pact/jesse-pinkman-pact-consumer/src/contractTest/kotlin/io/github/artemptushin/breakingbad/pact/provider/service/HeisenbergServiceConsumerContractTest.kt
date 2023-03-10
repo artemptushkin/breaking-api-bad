@@ -36,19 +36,10 @@ class HeisenbergServiceConsumerContractTest {
             .body(
                 LambdaDsl.newJsonBody { bodyDsl ->
                     bodyDsl
-                        .numberType("amount", 20.0)
-                        .array("crystals") { crystals ->
-                            crystals
-                                .`object` { crystal ->
-                                    crystal
-                                        .numberType("id", 1)
-                                        .stringMatcher("color", "red|blue")
-                                }
-                                .`object` { crystal ->
-                                    crystal
-                                        .numberType("id", 2)
-                                        .stringMatcher("color", "red|blue")
-                                }
+                        .`object`("blue") { blue ->
+                            blue
+                                .numberType("amount", 20.0)
+                                .numberType("id", 2)
                         }
                 }.build()
             )
@@ -61,6 +52,6 @@ class HeisenbergServiceConsumerContractTest {
         val crystals = heisenbergService.cookCrystals(2)
 
         assertThat(crystals).isNotNull
-        assertThat(crystals.crystals).hasSize(2)
+        assertThat(crystals.blue).isNotNull
     }
 }
