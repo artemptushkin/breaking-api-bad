@@ -10,9 +10,10 @@ dependencies {
     annotationProcessor("org.projectlombok:lombok:1.18.26")
     implementation("org.projectlombok:lombok:1.18.26")
 
+    testImplementation("org.springframework.boot:spring-boot-starter-test:2.5.5")
     testImplementation("org.junit.jupiter:junit-jupiter:5.8.1")
 }
 
-repositories {
-    mavenCentral()
+test {
+    useJUnitPlatform()
 }

@@ -40,10 +40,13 @@ public class CodefirstController {
     @PutMapping("/{id}")
     public ResponseEntity<ResponseDto<CrystalUpdatedDto>> updateCrystal(
             @Parameter(description = "Subscribe to receive an access to our Breaking Bad API",
+                    schema = @Schema(minLength = 32, maxLength = 32),
                     example = "5f894480bfe911edafa10242ac120002")
             @RequestHeader("X-CUSTOM-TOKEN") String token,
 
-            @Parameter(description = "identifier of the crystal", example = "0123456789ABCDEF")
+            @Parameter(description = "identifier of the crystal",
+                    schema = @Schema(minLength = 16, maxLength = 16),
+                    example = "0123456789ABCDEF")
             @PathVariable("id") String id,
 
             @RequestBody CrystalUpdateRequestDto request
@@ -63,11 +66,11 @@ public class CodefirstController {
     @Schema(title = "New parameters of the crystal")
     private record CrystalUpdateRequestDto(
             @Schema(description = "Type of the crystal", example = "BLUE") String type,
-            @Schema(description = "Price of the crystal", example = "300")long price) { }
+            @Schema(description = "Price of the crystal", example = "300") long price) { }
 
     @Schema(title = "Updated parameters of the crystal")
     private record CrystalUpdatedDto(
-            @Schema(description = "Identifier", example = "0123456789ABCDEF") String id,
+            @Schema(description = "Identifier", example = "0123456789ABCDEF", minLength = 16, maxLength = 16) String id,
             @Schema(description = "Type of the crystal", example = "BLUE") String type,
             @Schema(description = "Price of the crystal", example = "300") long price) { }
 

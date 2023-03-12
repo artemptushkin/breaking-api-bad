@@ -41,3 +41,5 @@ Start application with:
 Open generated swagger-ui in browser by this [link](http://localhost:8080/swagger-ui.html).
 
 Download generated OpenAPI specification with the [link](http://localhost:8080/v3/api-docs.yaml).
+Also, OpenAPI specification is generating in a build-time while tests are running.
+You can find `openapi.yaml` file in a [build dir](./openapi/code-first/build) after a test run. 
