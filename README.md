@@ -24,7 +24,7 @@
 ### Can-i-deploy
 
 ```shell
-pact-broker can-i-deploy --pacticipant=jesse-pinkman --version=jesse-season1 --to=main --broker-base-url=https://saul-goodman.pactflow.io/ -k=$SAUL_GOODMAN_BROKER_TOKEN
+pact-broker can-i-deploy --pacticipant=jesse-pinkman --version=jesse-season1 --to=prod --broker-base-url=https://saul-goodman.pactflow.io/ -k=$SAUL_GOODMAN_BROKER_TOKEN
 ```
 
 
