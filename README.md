@@ -1,5 +1,24 @@
 # Breaking the API bad
 
+How to mantain a contract between your microservices.
+There is a few approaches to do so:
+- write and share client library for your API
+- contract tests
+- specification tighten to code
+  - code-first
+  - spec-first
+
+In this repo we have prepared examples of each approach.
+
+---
+## Client Library
+Explore the code of 3 modules:
+- [Datamodel](./client-lib/datamodel) - common data types for server and client
+- [Server](./client-lib/server) - server application
+- [Client](./client-lib/client) - client library for distribution between your clients
+
+
+---
 ## Contract testing with Pact
 
 ### Consumer
