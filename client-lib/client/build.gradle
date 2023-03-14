@@ -1,11 +1,12 @@
 plugins {
     id "java"
-    id "org.springframework.boot" version "2.5.5"
 }
 
 dependencies {
+    implementation(project(":client-lib:datamodel"))
+
+    implementation("org.springframework.boot:spring-boot-starter:2.5.5")
     implementation("org.springframework.boot:spring-boot-starter-web:2.5.5")
-    implementation("org.springdoc:springdoc-openapi-ui:1.5.11")
 
     annotationProcessor("org.projectlombok:lombok:1.18.26")
     implementation("org.projectlombok:lombok:1.18.26")
