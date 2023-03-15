@@ -9,6 +9,9 @@ java {
 }
 
 subprojects {
+    group = "io.github.artemptushkin.breakingbad"
+    version = "0.0.1"
+
     repositories {
         mavenCentral()
     }

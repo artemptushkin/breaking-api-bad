@@ -1,4 +1,4 @@
-package io.github.artemptushin.breakingbad.scc
+package io.github.artemptushkin.breakingbad.scc
 
 import org.springframework.cloud.contract.spec.Contract
 
@@ -9,9 +9,6 @@ Contract.make {
             queryParameters {
                 parameter("amount", 2)
             }
-        }
-        headers {
-            contentType('application/json')
         }
     }
     response {

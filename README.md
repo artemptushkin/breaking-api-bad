@@ -46,6 +46,12 @@ Explore the code of 3 modules:
 pact-broker can-i-deploy --pacticipant=jesse-pinkman --version=jesse-season1 --to=prod --broker-base-url=https://saul-goodman.pactflow.io/ -k=$SAUL_GOODMAN_BROKER_TOKEN
 ```
 
+## Contract testing with Spring Cloud Contract
+
+```shell
+./gradlew :contract-testing:spring-cloud-contract:heisenberg-scc-provider:publishToMavenLocal
+```
+Expect stubs (contract and wiremock mappings) jar in `~/.m2/repository/io/github/artemptushkin/breakingbad/heisenberg-scc-provider/0.0.1`
 
 ---
 ## Openapi
