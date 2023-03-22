@@ -18,4 +18,13 @@ class HeisenbergService(private val restTemplate: RestTemplate) {
             )
         return heisenbergResponseEntity.body ?: throw NotFoundException()
     }
+
+    fun post() {
+        restTemplate
+            .postForEntity(
+                "http://localhost:8091/heisenberg/v1/crystals",
+                "foo",
+                Void::class.java
+            )
+    }
 }

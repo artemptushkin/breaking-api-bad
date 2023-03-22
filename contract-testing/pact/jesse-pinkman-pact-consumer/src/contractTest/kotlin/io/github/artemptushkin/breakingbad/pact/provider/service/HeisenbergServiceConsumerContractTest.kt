@@ -10,11 +10,13 @@ import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.extension.ExtendWith
+import org.springframework.test.context.TestConstructor
 import org.springframework.test.context.junit.jupiter.SpringExtension
 import org.springframework.web.client.RestTemplate
 
 @PactTestFor(port = "8091", providerName = "heisenberg")
 @ExtendWith(value = [SpringExtension::class, PactConsumerTestExt::class])
+@TestConstructor(autowireMode = TestConstructor.AutowireMode.ALL)
 class HeisenbergServiceConsumerContractTest {
 
     lateinit var heisenbergService: HeisenbergService
@@ -22,6 +24,24 @@ class HeisenbergServiceConsumerContractTest {
     @BeforeEach
     fun setup() {
         heisenbergService = HeisenbergService(RestTemplate())
+    }
+
+    @Pact(consumer = "jesse-pinkman")
+    fun postCrystals(builder: PactDslWithProvider): V4Pact {
+        return builder
+            .given("this guy cooks!")
+            .uponReceiving("Crystals, beach!")
+            .method("POST")
+            .path("/heisenberg/v1/crystals")
+            .willRespondWith()
+            .status(200)
+            .toPact(V4Pact::class.java)
+    }
+
+    @Test
+    @PactTestFor(pactMethod = "postCrystals")
+    fun `test-post`() {
+        heisenbergService.post()
     }
 
     @Pact(consumer = "jesse-pinkman")
@@ -48,6 +68,7 @@ class HeisenbergServiceConsumerContractTest {
     }
 
     @Test
+    @PactTestFor(pactMethod = "crystalsPact")
     fun `this-guy-cooks!`() {
         val crystals = heisenbergService.cookCrystals(2)
 

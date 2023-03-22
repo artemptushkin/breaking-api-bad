@@ -1,8 +1,6 @@
-package io.github.artemptushin.breakingbad.pact.provider.controller
+package io.github.artemptushkin.breakingbad.pact.provider.controller.domain
 
-import io.github.artemptushin.breakingbad.pact.provider.controller.domain.CrystalsShopResponse
-import io.github.artemptushin.breakingbad.pact.provider.controller.domain.ShopRequest
-import io.github.artemptushin.breakingbad.pact.provider.service.HeisenbergService
+import io.github.artemptushkin.breakingbad.pact.provider.service.HeisenbergService
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
