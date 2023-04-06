@@ -1,6 +1,6 @@
 # Breaking the API bad
 
-How to mantain a contract between your microservices.
+How to maintain a contract between your microservices.
 There is a few approaches to do so:
 - write and share client library for your API
 - contract tests
@@ -20,6 +20,11 @@ Explore the code of 3 modules:
 
 ---
 ## Contract testing with Pact
+
+Find more about best practices:
+
+* https://dev.to/art_ptushkin/best-practices-for-writing-contract-tests-with-pact-in-jvm-stack-124l
+* https://dev.to/art_ptushkin/consumer-and-provider-binding-in-contract-testing-2ib1
 
 ### Consumer
 
