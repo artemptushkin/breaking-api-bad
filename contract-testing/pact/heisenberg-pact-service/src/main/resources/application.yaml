@@ -1,3 +1,6 @@
 server:
   servlet:
     context-path: /heisenberg
+logging:
+  level:
+    au.com.dius.pact.provider: debug
