@@ -5,13 +5,18 @@ import au.com.dius.pact.provider.junitsupport.Provider
 import au.com.dius.pact.provider.junitsupport.State
 import au.com.dius.pact.provider.junitsupport.StateChangeAction
 import au.com.dius.pact.provider.junitsupport.loader.PactBroker
+import au.com.dius.pact.provider.junitsupport.loader.PactBrokerAuth
 import au.com.dius.pact.provider.spring.junit5.PactVerificationSpringProvider
 import org.junit.jupiter.api.TestTemplate
 import org.junit.jupiter.api.extension.ExtendWith
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.test.context.junit.jupiter.SpringExtension
 
-@PactBroker
+@PactBroker(
+    authentication = PactBrokerAuth(
+        token = "\${SAUL_GOODMAN_BROKER_TOKEN}"
+    )
+)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT)
 @Provider("heisenberg")
 @ExtendWith(value = [SpringExtension::class])
